@@ -1,0 +1,37 @@
+---
+title: "MLARPIS Assignment 1"
+author: "Robert van der Kaap"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This code was provided in the assignment description.
+
+```{r}
+
+library(lattice) # Load the lattice package
+library(xtable) # generate the LaTeX code for tables
+
+set.seed(123) # Fix the random generator seed
+
+data <- rnorm(1000) # Create data
+
+histogram(data) # Plot histogram
+densityplot(data^12 / data^10, xlab = expression(data^12/data^10)) # Plot density 
+stripplot(data^2, xlab = expression(data^2)) # Plot stripplot
+bwplot(exp(data)) # Plot boxplot
+
+data.all <- cbind(data = data, # Matrix with all data used
+                  squared1 = data^12 / data^10,
+                  squared2 = data^2,
+                  exponent = exp(data))
+
+?xtable
+xtable(data.all)
+
+```
+
