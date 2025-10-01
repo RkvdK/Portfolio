@@ -1,0 +1,127 @@
+---
+title: "Opus Magnum Factory"
+subtitle: "MLARPIS Week 2 Exercise 2"
+format:
+  revealjs:
+    self-contained: true   # alles (css/js/afbeeldingen) in één .html
+execute:
+  echo: false
+  warning: false
+  message: false
+editor: visual
+bibliography: references.bib # bib.bestand
+link-citations: true # Makes citations clickable
+author:
+  - name: Robert Karst van der Kaap
+  - orcid: 0009-0008-1563-1522
+---
+
+## Disclaimer
+
+All illustrations in this presentation are made by ChatGPT.
+
+## Appetizer logo
+
+To stimulate your imaginative powers, I start with a logo.
+
+![](logo.png){width="1%" fig-align="center"}
+
+## The context
+
+Once upon a time, all my favorite authors came together to construct their opus magnum: an allegory of all my favorite books
+
+![](csf.png){fig-align="center" width="50%"}
+
+## About the Authors
+
+To get to know these authors a little bit, see the table below containing some information about some of these authors and books.
+
+```{r, echo = FALSE}
+
+library(tidyverse) # Tibbles
+library(DT) # Interactive table
+
+
+name <- c("André Aciman", "Tomasz Jedrowski", "Madeline Miller", "Hanya Yanagihara", "Adam Silvera") # Construct name variable
+gender <- c("Man", "Man", "Woman", "Woman", "Man") # Construct gender variable
+age <- as.numeric(c(74, 40, 47, 51, 35)) # Construct numerical age variable
+book <- c("Call me by your name", "Swimming in the dark", "A song for Achilles", "A little life", "They both die at the end")
+
+audat <- as_tibble(cbind(name, gender, age, book)) # Bind variables into a single tibble
+
+autab <- audat |> 
+  datatable(options = list(pageLength = 5)) # Create a interactive table
+
+```
+
+```{r, label="autab-display", cache=TRUE, echo=TRUE}
+
+autab   # Display the result
+
+```
+
+[aciman2007]
+[jedorwski2020]
+[miller2011]
+[yanagihara2015]
+[silvera2017]
+
+## The authors start to work...
+
+![](book_writing.gif){fig-align="center" width="60%"}
+
+## Let me introduce you to the main character
+
+These are Oscar (l) and Lloyd (r). They are both statisticians.
+
+![](ol.png){fig-align="center" width="60%"}
+
+## The favorite equation of Oscar and Lloyd
+
+Love may be unpredictable, but their distribution is normal.
+
+$$
+\begin{aligned}
+X &\sim \mathcal{N}(\mu, \sigma^2) \\
+f(x) &= \frac{1}{\sqrt{2\pi\sigma^2}}
+       \exp\!\left(
+       -\frac{(x - \mu)^2}{2\sigma^2}
+       \right) \\
+&\quad \text{with } \mu = \text{“Oscar”}, \;
+      \sigma^2 = \text{“Lloyd”}
+\end{aligned}
+$$
+
+## A sneak peak
+
+::::: columns
+::: {.column width="50%"}
+![](colleft1.png){fig-align="left" width="80%"}
+
+The happy moments
+:::
+
+::: {.column width="50%"}
+![](colright1.png){fig-align="center" width="85%"}
+
+The tough moments
+:::
+:::::
+
+## Spoiler alert!
+
+If you want to know all the ins and outs: write this opus magnum so I can read it! For now, I just spoiler a hypothetical end of the story.
+
+![](spoiler.png){fig-align="center" width="60%"}
+
+## Technical stuff
+
+```{r, eval=FALSE, echo=TRUE}
+
+library(renv) # Load the package
+renv::init() # Initialise
+renv::snapshot() # Snapshot
+
+```
+
+
